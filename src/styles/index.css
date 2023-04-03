@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.news-title{
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.news-url{
+  font-size: 24px;
+  font-style: italic;
+  cursor: pointer;
+  color: blueviolet;
+  text-decoration: none;
+}
+.news-url:hover{
+  color: green;
+}
+.newsDA{
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  color: rgba(0,0,0,.6);
+  font-weight: 500;
+}
