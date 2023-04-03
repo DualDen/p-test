@@ -32,33 +32,30 @@ class Comments {
       this.status = "done";
     });
   }
-     childrenFunc (c:any,id:any,data:any) {
-         c.map((item:any) => {
-            if(item.id === id) {
-                return {...item,children: data}
-            }
-            this.childrenFunc(item,item.id,data)
-            return item;
-        })
-        return c;
-    }
   async getCommentsChildren(kids: number[], id: number, children: IComment[]) {
     const data: IComment[] = [];
-    if (kids === undefined) return;
+    if(kids === undefined) return;
     for (const item of kids) {
       const response = await api.get<IComment>(
         `https://hacker-news.firebaseio.com/v0/item/${item}.json`
       );
       data.push(response);
     }
+    const recursFunc = (comments:IComment[]) => {
+      for(let i = 0; i < comments.length!; i++) {
+        if(comments[i].id === id) {
+          comments[i].children = data;
+          recursFunc(children)
+        }
+      }
+      return comments;
+    }
     runInAction(() => {
-        this.comments = children.map(item => {
-            if(item.id === id) {
-                return {...item,children: data}
-            }
-            return item;
-        })
+      this.comments = recursFunc(children);
     })
+  }
+  setNullComments () {
+    this.comments = [];
   }
 }
 export default new Comments();

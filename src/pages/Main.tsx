@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { observer } from "mobx-react-lite";
 import news from "../store/News";
-import {Avatar, List, Spin} from "antd";
+import {Avatar, List, Spin,Button} from "antd";
 import {Link} from "react-router-dom";
 import placeholder from "../assets/placeholder.png"
 import {dateParser} from "../utils/dateParser";
@@ -12,7 +12,9 @@ const Main = observer(() => {
           case "pending":
               return <Spin size="large"/>;
           case "done":
-              return  <List
+              return <div>
+                <Button onClick={fetchFunc}>Update News</Button>
+                 <List
                   itemLayout="horizontal"
                   dataSource={news.news}
                   renderItem={item => (
@@ -25,6 +27,7 @@ const Main = observer(() => {
                       </List.Item>
                   )}
               />
+              </div>
           case "error":
               return <h1>Error...</h1>
       }

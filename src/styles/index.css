@@ -35,3 +35,6 @@ code {
   color: rgba(0,0,0,.6);
   font-weight: 500;
 }
+li{
+  cursor: pointer;
+}
